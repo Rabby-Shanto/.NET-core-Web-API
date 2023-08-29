@@ -6,5 +6,6 @@ namespace Ecommerce.Abstractions.Repository
     public interface ICustomerRepository : IRepository<Customer>
     {
         Task<List<Customer>> GetListOfCustomer(List<int> id);
+        Task<ICollection<Customer>> GetFilterdCustomers(string name);
     }
 }

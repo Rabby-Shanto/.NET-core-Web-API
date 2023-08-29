@@ -3,6 +3,7 @@ using Ecommerce.Abstractions.BLL;
 using Ecommerce.Model.EcommerceDbModels;
 using Ecommerce.Model.EcommerceDtos.Customer;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace Ecommerce.API.Controllers.Ecommerce
 {
@@ -50,6 +51,19 @@ namespace Ecommerce.API.Controllers.Ecommerce
             var mapper = _mapper.Map<Customer>(customer);
             var request = await _customermanager.DeleteAsync(mapper);
             return Ok(request);
+        }
+        [HttpGet("name")]
+        public async Task<IActionResult>GetAll(string name)
+        {
+            try
+            {
+                var customers = await _customermanager.GetFilterdCustomers(name);
+                return Ok(customers);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
