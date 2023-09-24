@@ -8,7 +8,8 @@ namespace Ecommerce.Configurations.Helpers
     {
         public MappingProfile()
         {
-            CreateMap<Customer,CustomerListDto>();
+            CreateMap<Customer,CustomerListDto>()
+                .ForMember(des=> des.CustomerId,o=> o.MapFrom(s=>s.Id));
             CreateMap<CustomerAddDto,Customer>();
             CreateMap<CustomerUpdateorDeleteDto,Customer>();
         }

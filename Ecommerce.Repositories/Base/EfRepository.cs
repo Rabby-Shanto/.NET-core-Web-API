@@ -33,7 +33,7 @@ namespace Ecommerce.Repositories.Base
         public virtual async Task<IReadOnlyList<T>> GetAllAsync()
         {
             return await _db.Set<T>().ToListAsync();
-            
+
         }
 
         public virtual async Task<T> GetByIdAsync(int id)

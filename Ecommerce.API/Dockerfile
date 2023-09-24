@@ -14,6 +14,7 @@ COPY ["Ecommerce.BLL/Ecommerce.BLL.csproj", "Ecommerce.BLL/"]
 COPY ["Ecommerce.Configurations/Ecommerce.Configurations.csproj", "Ecommerce.Configurations/"]
 COPY ["Ecommerce.Repositories/Ecommerce.Repositories.csproj", "Ecommerce.Repositories/"]
 COPY ["Ecommerce.Database/Ecommerce.Database.csproj", "Ecommerce.Database/"]
+
 RUN dotnet restore "Ecommerce.API/Ecommerce.API.csproj"
 COPY . .
 WORKDIR "/src/Ecommerce.API"
