@@ -15,6 +15,12 @@ namespace Ecommerce.Repositories
             _db = db;
         }
 
+        public async Task<ICollection<Product>> GetFilterdProducts(string name)
+        {
+            string searchedName = name.ToLower();
+            return await _db.Products.Where(c => c.Name.ToLower().Contains(searchedName)).ToListAsync();
+        }
+
         public async Task<List<Product>> GetListofProducts(List<int> id)
         {
             return await _db.Products.AsNoTracking().Where(x => id.Contains(x.Id)).ToListAsync();

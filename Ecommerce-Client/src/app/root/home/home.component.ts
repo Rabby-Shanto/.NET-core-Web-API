@@ -1,0 +1,25 @@
+import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/app/response_model/Product';
+import { ProductService } from 'src/app/services/product.service';
+
+@Component({
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css'],
+})
+export class HomeComponent implements OnInit {
+  products?: Product[];
+  constructor(private productService: ProductService) {}
+
+  ngOnInit(): void {
+    this.getProducts();
+  }
+
+  getProducts() {
+    this.productService.getAllProducts().subscribe({
+      next: (response) => (this.products = response),
+      error: (error) => console.log(error),
+    });
+  }
+  addItemToCart(id: any) {}
+}

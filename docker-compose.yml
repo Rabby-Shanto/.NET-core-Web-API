@@ -1,35 +1,41 @@
-version: '3.9'
+version: "3.9"
 services:
-  db:
-    image: mcr.microsoft.com/mssql/server
-    environment:
-      ACCEPT_EULA: Y
-      SA_PASSWORD: Abcd1234@
+  # db:
+  #   image: mcr.microsoft.com/mssql/server
+  #   environment:
+  #     ACCEPT_EULA: Y
+  #     SA_PASSWORD: Abcd1234@
+  #   ports:
+  #     - "1433:1433"
+  #   networks:
+  #     - mynetwork
+
+  basketdb:
+    image: redis:alpine
+    container_name: basketdb
+    restart: always
     ports:
-      - "1433:1433"
-    networks:
-      - mynetwork
+      - "6379:6379"
+#   api:
+#     build:
+#       context: .
+#       dockerfile: Ecommerce.API/Dockerfile
 
-  api:
-    build:
-      context: .
-      dockerfile: Ecommerce.API/Dockerfile
+#     ports:
+#       - "7174:80"
+#     environment:
+#       - ConnectionStrings__DefaultConnection=Server=db;Database=EcommerceDB;User=sa;Password=Abcd1234@;
+#       - ASPNETCORE_URLS=https://+:443;http://+:80
+#       - ASPNETCORE_Kestrel__Certificates__Default__Password=123456
+#       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/certificate.pfx
 
-    ports:
-      - "7174:80"
-    environment:
-      - ConnectionStrings__DefaultConnection=Server=db;Database=EcommerceDB;User=sa;Password=Abcd1234@;
-      - ASPNETCORE_URLS=https://+:443;http://+:80
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=123456
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/certificate.pfx
+#     volumes:
+#       - ~/.aspnet/https:/https
 
-    volumes:
-      - ~/.aspnet/https:/https
+#     depends_on:
+#       - db
+#     networks:
+#       - mynetwork
 
-    depends_on:
-      - db
-    networks:
-      - mynetwork
-
-networks:
-  mynetwork:
+# networks:
+#   mynetwork:

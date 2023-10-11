@@ -14,6 +14,14 @@ namespace Ecommerce.Configurations.Extensions
             services.AddScoped<ICustomer, CustomerManager>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             #endregion
+            #region Product
+            services.AddScoped<IProduct, ProductManager>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            #endregion
+            #region Cart
+            services.AddScoped<ICart, CartManager>();
+            services.AddScoped<ICartRepository, CartRepository>();
+            #endregion
             return services;
         }
     }

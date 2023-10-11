@@ -13,6 +13,12 @@ namespace Ecommerce.BLL
         {
             _productRepository = productRepository;
         }
+
+        public async Task<ICollection<Product>> GetFilterdProducts(string name)
+        {
+            return await _productRepository.GetFilterdProducts(name);
+        }
+
         public async Task<List<Product>> GetListofProducts(List<int> id)
         {
             return await _productRepository.GetListofProducts(id);
