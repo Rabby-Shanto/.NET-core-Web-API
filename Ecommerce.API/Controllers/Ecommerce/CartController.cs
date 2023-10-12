@@ -19,9 +19,18 @@ namespace Ecommerce.API.Controllers.Ecommerce
             _mapper = mapper;
         }
 
+        [HttpGet]
+        public async Task<ActionResult<List<CartListDto>>> GetCart()
+        {
+            var productCart = await _cart.GetAllAsync();
+            var mapper = _mapper.Map<List<CartListDto>>(productCart);
+            return Ok(mapper);
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddCart([FromBody] CartAddDto cart)
         {
+
             var mapper = _mapper.Map<Cart>(cart);
             var request = await _cart.AddAsync(mapper);
             return Ok(request);
